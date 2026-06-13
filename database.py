@@ -39,6 +39,10 @@ async def insert_telemetry(
     """
     Insert a telemetry record and return the generated UUID.
     """
+    import datetime
+    if timestamp.tzinfo is not None:
+        timestamp = timestamp.astimezone(datetime.timezone.utc).replace(tzinfo=None)
+        
     query = """
         INSERT INTO telemetry (device_id, device_type, refinery_region, timestamp, temperature, vibration, current)
         VALUES ($1, $2, $3, $4, $5, $6, $7)
