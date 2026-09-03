@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingestion-ser
+spec:
+  type: ClusterIP
+  selector:
+    app: ingestion-lab
+  ports:
+  - port: 80
+    targetPort: 8000
